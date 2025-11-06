@@ -1,8 +1,19 @@
 from locust import HttpUser, task, between
 
-class ExampleUser(HttpUser):
+class GoogleUser(HttpUser):
     wait_time = between(1, 3)
 
     @task
     def home(self):
-        self.client.get("/")     # https://example.org/
+        # main page
+        self.client.get("/")
+
+    @task
+    def search_q(self):
+        # simple search request
+        self.client.get("/search?q=python")
+
+    @task
+    def images(self):
+        # google images page
+        self.client.get("/imghp")
