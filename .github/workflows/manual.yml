@@ -19,4 +19,4 @@ jobs:
 
       - name: Run locust (headless)
         run: |
-          locust -f locustfile.py --host https://www.google.com --headless -u 20 -r 5 -t 30s
+          locust -f load-testing.py --host https://www.google.com --headless -u 20 -r 5 -t 30s
