@@ -1,0 +1,22 @@
+name: Manual Locust run
+
+on:
+  workflow_dispatch:
+
+jobs:
+  load-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install locust
+        run: pip install locust
+
+      - name: Run locust (headless)
+        run: |
+          locust -f locustfile.py --host https://www.google.com --headless -u 20 -r 5 -t 30s
